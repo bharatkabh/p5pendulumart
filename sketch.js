@@ -79,8 +79,9 @@ function draw() {
   prevTip = tip.copy();
 
   t += 0.03;
-
-  drawControls();
+if (showControls) {
+    drawControls();
+  }
 }
 
 function createSliders() {
@@ -218,6 +219,18 @@ function mousePressed() {
   if (dist(mouseX, mouseY, cx, cy4) < radius) {
     savePendulumDrawing();
     return;
+  }
+}
+
+function keyPressed() {
+  if (key === 'h' || key === 'H') {
+    showControls = false;
+	lengthSliders.forEach(slider => slider.hide());
+    speedSliders.forEach(slider => slider.hide());
+  } else if (key === 'u' || key === 'U') {
+    showControls = true;
+    lengthSliders.forEach(slider => slider.show());
+    speedSliders.forEach(slider => slider.show());
   }
 }
 
